@@ -5,17 +5,10 @@ import 'home.dart';
 void main() => runApp(Fooderlich());
 
 class Fooderlich extends StatelessWidget {
-  Fooderlich({Key key}) : super(key: key);
-
+  const Fooderlich({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final theme = FooderlichTheme.dark();
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Fooderlich',
-      theme: theme,
-      home: Home(),
-    );
+    final theme = FooderlichTheme.light();
+    return MaterialApp(theme: theme, title: 'Fooderlich', home: const Home());
   }
 }

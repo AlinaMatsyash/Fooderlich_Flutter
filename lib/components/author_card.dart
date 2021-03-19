@@ -1,14 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'fooderlich_theme.dart';
+import '../fooderlich_theme.dart';
 import 'circle_image.dart';
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   final String authorName;
   final String title;
   final ImageProvider imageProvider;
 
   AuthorCard({this.imageProvider, this.title, this.authorName});
+
+  @override
+  _AuthorCardState createState() => _AuthorCardState();
+}
+
+class _AuthorCardState extends State<AuthorCard> {
+  bool _isFavorited = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class AuthorCard extends StatelessWidget {
           Row(
             children: [
               CircleImage(
-                imageProvider: imageProvider,
+                imageProvider: widget.imageProvider,
                 imageRadius: 28,
               ),
               SizedBox(
@@ -30,11 +37,11 @@ class AuthorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    authorName,
+                    widget.authorName,
                     style: FooderlichTheme.lightTextTheme.headline2,
                   ),
                   Text(
-                    title,
+                    widget.title,
                     style: FooderlichTheme.lightTextTheme.headline3,
                   ),
                 ],
@@ -42,12 +49,13 @@ class AuthorCard extends StatelessWidget {
             ],
           ),
           IconButton(
-              icon: Icon(Icons.favorite_border),
+              icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
               iconSize: 30,
-              color: Colors.grey[400],
+              color: Colors.red[400],
               onPressed: () {
-                const snackBar = SnackBar(content: Text('Press Favorite'));
-                Scaffold.of(context).showSnackBar(snackBar);
+                setState(() {
+                  _isFavorited = !_isFavorited;
+                });
               }),
         ],
       ),

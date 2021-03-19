@@ -1,31 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'author_card.dart';
-import 'fooderlich_theme.dart';
+import 'package:fooderlich/models/models.dart';
+import 'package:fooderlich/fooderlich_theme.dart';
 
 class Card2 extends StatelessWidget {
-  Card2({Key key}) : super(key: key);
+  final ExploreRecipe recipe;
+
+  const Card2({Key key, this.recipe}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        constraints: BoxConstraints.expand(width: 350, height: 450),
+        constraints: const BoxConstraints.expand(width: 350, height: 450),
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/mag5.png'),
-            fit: BoxFit.cover,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10.0),
-          ),
-        ),
+            image: DecorationImage(
+                image: AssetImage(recipe.backgroundImage), fit: BoxFit.cover),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0))),
         child: Column(
           children: [
             AuthorCard(
-              authorName: 'Alina Matsyash',
-              title: 'Smoothie Connoisseur',
-              imageProvider: AssetImage('assets/alina.png'),
-            ),
+                authorName: recipe.authorName,
+                title: recipe.role,
+                imageProvider: AssetImage(recipe.profileImage)),
             Expanded(
               child: Stack(
                 children: [
@@ -33,7 +31,7 @@ class Card2 extends StatelessWidget {
                     bottom: 16,
                     right: 16,
                     child: Text(
-                      'Recipe',
+                      recipe.title,
                       style: FooderlichTheme.lightTextTheme.headline1,
                     ),
                   ),
@@ -43,7 +41,7 @@ class Card2 extends StatelessWidget {
                     child: RotatedBox(
                       quarterTurns: 3,
                       child: Text(
-                        'Smoothies',
+                        recipe.subtitle,
                         style: FooderlichTheme.lightTextTheme.headline1,
                       ),
                     ),
