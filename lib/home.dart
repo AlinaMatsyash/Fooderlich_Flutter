@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
             backgroundImage: 'assets/magazine_pics/card_bread.jpg')),
     Card2(
         recipe: ExploreRecipe(
-            authorName: 'Alina Matsyash',
+            authorName: 'Mike Katz',
             role: 'Smoothie Connoisseur',
             profileImage: 'assets/profile_pics/person_katz.jpeg',
             title: 'Recipe',
