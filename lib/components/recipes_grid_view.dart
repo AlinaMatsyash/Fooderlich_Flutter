@@ -14,8 +14,8 @@ class RecipesGridView extends StatelessWidget {
       padding: EdgeInsets.only(left: 16, right: 16, top: 16),
       child: GridView.builder(
           itemCount: recipes.length,
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 500.0),
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           itemBuilder: (context, index) {
             final simpleRecipe = recipes[index];
             return RecipeThumbnail(
